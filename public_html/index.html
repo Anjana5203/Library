@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Studio landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Home</title>
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+
+    <!-- Bootstrap + Creative Studio main styles -->
+	<link rel="stylesheet" href="assets/css/creative-studio.css">
+
+<style>
+    
+.animated-link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #d71a53;
+    font-weight: bolder;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .animated-link:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #f40a58;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .animated-link:hover:before {
+    transform: scaleX(1);
+  }
+</style>
+
+<script>
+    function myFunction() {
+        
+      event.preventDefault();
+      var data = {};
+      data.email = document.getElementById("email").value;
+      data.phoneNo = document.getElementById("phoneNo").value;
+      data = JSON.stringify(data);
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+  
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          var res = JSON.parse(this.responseText);
+
+          if (res.status == 200)
+          {
+                window.location = "UserPage.html";
+        }
+        else
+        {
+          
+        }
+        }
+      });
+  
+      xhr.open("POST", "http://localhost:4000/login");
+      xhr.setRequestHeader("Accept", "*/*");
+      xhr.setRequestHeader("User-Agent", "Thunder Client (https://www.thunderclient.com)");
+      xhr.setRequestHeader("Content-Type", "application/json");
+  
+      xhr.send(data);
+    }
+    </script>
+
+    <script>
+
+    function myFunction2() {
+      event.preventDefault();
+      var data = {};
+      data.email = document.getElementById("email").value;
+      data.phone = document.getElementById("phoneNo").value;
+      data = JSON.stringify(data);
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+  
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          var res = JSON.parse(this.responseText);
+
+          if (res.status == 200)
+          {
+                window.location = "admin.html";
+               
+        }
+        else
+        {
+          
+        }
+        }
+      });
+  
+      xhr.open("POST", "http://localhost:4000/login2");
+      xhr.setRequestHeader("Accept", "*/*");
+      xhr.setRequestHeader("User-Agent", "Thunder Client (https://www.thunderclient.com)");
+      xhr.setRequestHeader("Content-Type", "application/json");
+  
+      xhr.send(data);
+    }
+  </script>
+ 
+  
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    
+    <nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Features" class="nav-link">Features</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <header class="header">
+        <div class="overlay">
+            <h6 class="subtitle">Celebrating knowledge, empowering minds.  </h6>
+            <h2 class="title">Welcome to BookHub</h2>
+            <h6 class="subtitle"> where words come alive and dreams take flight.</h6>
+
+            <div class="buttons text-center">   
+        </div>      
+        </div>
+    </header>
+   
+
+
+    <div >
+        
+    </div>
+   
+
+
+
+    <section id="login">
+        <section class="has-bg-img py-md">
+            <div class="container text-center">
+                <div class="section" id="section">
+                    <div class="row align-items-center">
+                        <div class="col-md-7 col-lg-7">
+                            <img src="assets/imgs/about.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page" class="w-100 img-thumbnail mb-3">
+                        </div>
+                        <div class="col-md-5 col-lg-5">
+                            <form id="Login" method="get" action="login.php">
+                                <label><b>Username</b></label>
+                                <input type="text" name="email"  placeholder="Admin/User" id="email">
+                                <br><br>
+                                <label><b>Password</b></label>
+                                <input type="password" name="Password" placeholder="Password"  id="phoneNo">
+                                <br><br>
+                                <input type="button" onclick="myFunction(),myFunction2()" name="log" id="log" value=" Submit " style="color:#FFFFFF;background-color:#292c2e; font-weight: bolder;">
+                                <br><br>
+                            </form>  
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+
+    <section id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5 col-lg-4">
+                    <img src="assets/imgs/front.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page" class="w-100 img-thumbnail mb-3">
+                </div>
+                <div class="col-md-7 col-lg-8">
+                    <h6 class="section-title mb-3">Discover Your World</h6>
+            <p>Step into the world of knowledge and imagination at our library, where
+                 the power of words knows no bounds. Here, you will embark on a journey of 
+                 discovery, exploration, and personal growth. Our library serves as an oasis of wisdom,
+                  inviting you to unlock the secrets of countless books, delve into the realms of fiction and non-fiction,
+                   and connect with the transformative ideas that lie within. It is a place where words come alive, where 
+                   stories ignite your imagination, and where the pages hold the key to endless possibilities. With each book you open,
+                    you open your mind to new perspectives, ideas, and experiences. Our library is a haven for dreamers, thinkers, and 
+                    seekers, offering a sanctuary for those who crave intellectual stimulation and a refuge for those who seek solace within
+                     the pages. Come, be inspired, and let the library be your guiding light on the path of knowledge and enlightenment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <!-- End of Team Sectoin -->
+
+
+    <section id="arrivals">
+    <section class="has-bg-img py-md">
+        <div class="container text-center">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="section-title mb-6">New Arrival</h6>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="text-center pb-4">
+                            <img class="img-fluid mx-auto" src="assets/imgs/avatar.jpg" style="width: 100px; height: 100px;">
+                            <p class="mt-5">
+                                "Against Heaven: Poems" by Kemi Alabi is a stunning collection that explores themes of identity, race, and belonging with profound lyricism. Through evocative language and introspective verses, Alabi's poetry invites readers to reflect on the complexities of existence and the pursuit of personal truth.
+                            </p>
+                            <h6 class="text-truncate"> Against Heaven:<br> Poems By Kemi Alabi</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center pb-4">
+                            <img class="img-fluid mx-auto" src="assets/imgs/avatar-1.jpg" style="width: 100px; height: 100px;">
+                            <p class="mt-5">"Electric Idol" by Katee Robert is a captivating novel that weaves together romance, suspense, and the supernatural, taking readers on a thrilling journey through the passionate and dangerous relationship between a rock star and a mysterious woman with a haunting secret.
+                            </p>
+                            <h6 class="text-truncate">Electric Idol:<br> Katee Robert</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center pb-4">
+                            <img class="img-fluid mx-auto" src="assets/imgs/avatar-2.jpg" style="width: 100px; height: 100px;">
+                            <p class="mt-5">
+                                "A Black and Endless Sky" by Matthew Lyons is a hauntingly beautiful collection of poetry that delves into the depths of grief, loss, and healing. Lyons' powerful words resonate with raw emotion, offering solace and understanding to those navigating the complexities of sorrow and finding hope amidst darkness.
+                            </p>
+                            <h6 class="text-truncate">A Black and Endless Sky:<br> Matthew Lyons</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="text-center pb-4">
+                            <img class="img-fluid mx-auto" src="assets/imgs/avatar-3.jpg" style="width: 100px; height: 100px;">
+                            <p class="mt-5">"The Hurting Kind: Poems" by Ada Limón is a poignant collection that delves into vulnerability, longing, and the complexities of human emotions. With evocative language and vivid imagery, Limón explores pain and resilience, offering a powerful and introspective journey through the landscape of the heart.
+                            </p>
+                            <h6 class="text-truncate">The Hurting Kind: Poems:<br> Ada Limón</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+    
+    <!-- Fatcs Section -->
+    
+
+
+    <!-- Video Section -->
+
+    <!-- end of modal -->
+    
+    <!-- Blog Section -->
+    <link rel="stylesheet" href="assets/css/style.css">
+     <section id="Features">
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="section" id="section">
+                <center>
+                <h3>Highlighted Features</h3>
+            </center>
+            <br><br>
+                <div class="row">
+                    <div class="col-md-6">
+               
+                        <h5 class="title">Dynamic Book Search</h5>
+                        <p class="subtitle"> A user-friendly search feature that allows visitors to
+                             easily find their favorite books or explore new titles based on genres, authors, or keywords.</p>
+                        
+                    </div>
+                    <div class="col-md-6">
+                    <h5 class="title">Virtual Bookshelf</h5>
+                    <p class="subtitle"> A virtual bookshelf feature that enables users to create
+                         their own digital book collections, bookmark favorites, and track their reading progress.</p>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <h5 class="title">Self-publishing corner</h5>
+                                <p class="subtitle">Create a space where local authors can showcase their self-published works, 
+                                    offering them a platform to reach a wider audience.</p>
+                                      
+                            </div>
+                            <div class="col-md-6">
+                            <h5 class="title"> Audiobook Integration</h5>
+                            <p class="subtitle"> Partner with audiobook platforms or provide an in-house 
+                                audiobook feature to cater to users who prefer listening to books instead of reading. </p>
+                                             
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+   
+    <!-- End of Blog Section -->
+
+    <!-- Contact Section -->
+     <!-- core  -->
+     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+ 
+     <!-- bootstrap affix -->
+     <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+ 
+     <!-- Creative Studio js -->
+     <script src="assets/js/creative-studio.js"></script>
+    <!-- Contact Section -->
+
+    <section class="has-bg-img py-md">
+        <div class="container">
+            <div class="footer">
+                <div class="footer-lists">
+                    <ul class="list">
+                        <li class="list-head">
+                            <h6 class="font-weight-bold">ABOUT US</h6>
+                        </li>
+                        <li class="list-body">
+                            <a href="#" class="logo">
+                                <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+                                <h6>BookHub</h6>
+                            </a>
+                            <p>The library website serves as a digital gateway, providing seamless access to a world of knowledge, resources, and services.</p> 
+                                            
+                        </li>
+                    </ul>
+                    <ul class="list">
+                        <li class="list-head">
+                            <h6 class="font-weight-bold">USEFUL LINKS</h6>
+                        </li>
+                        <li class="list-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#about" class="animated-link">About</a>
+                                    <a href="#login" class="animated-link">Login</a>
+                                    <a href="#arrivals" class="animated-link">Arrivals</a>
+                                    <a href="#features" class="animated-link">Features</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>    
+        </div>
+    </section>
+</body>
+</html>

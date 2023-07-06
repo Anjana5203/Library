@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Studio landing page.">
+    <meta name="author" content="Devcrud">
+    <title>User Deletion</title>
+    <!-- Font icons -->
+<link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+
+<!-- Bootstrap + Creative Studio main styles -->
+<link rel="stylesheet" href="assets/css/creative-studio.css">
+
+<style>
+
+table {
+      border-collapse: collapse;
+      width: 50%;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    
+    /* CSS styles for the table header */
+    th {
+      background-color: #DC2861;
+      color: white;
+    }
+
+    .delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+   
+
+     .submit-button {
+            background-color: #f40a58;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: bolder;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #c20a48;
+        }
+
+    .animated-link {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #f8f6f6;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .animated-link:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #f40a58;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .animated-link:hover:before {
+        transform: scaleX(1);
+    }
+
+    
+    .welcome-message {
+        text-align: center;
+        font-size: 24px;
+        margin-top: 50px;
+        color: #e7dcde;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .search-form {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .search-form input[type="text"] {
+        width: 300px;
+        padding: 10px;
+        border: 3px solid #111010;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .view-options {
+        text-align: center;
+    }
+
+    .view-options .btn-group {
+        display: inline-block;
+    }
+
+    .view-options .btn {
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+
+    .userlist {
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    .userlist td,
+    .userlist th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    .userlist tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .userlist tr:hover {
+      background-color: #ddd;
+    }
+
+    .userlist th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #d6285f;
+      color: white;
+    }
+    </style>
+
+<script>
+    function goBack() {
+        window.history.back(); // Go back to the previous page
+    }
+
+    function showSuccessMessage() {
+        alert("Successful")
+    }
+
+    // Call the userlist function to fetch and display the initial user list
+    booklist();
+</script>
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- Page Navigation -->
+<nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="index.html#home" class="animated-link">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="UserDetails.html" class="animated-link">User</a>
+              </li>
+                <li class="nav-item">
+                    <a href="UserRegister.html" class="animated-link">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="UserDelete.html" class="animated-link">Deletion</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="animated-link" onclick="goBack()">Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Of Page Navigation -->
+
+<section class="has-bg-img py-md">
+    <div class="container text-center"><br><br><br><br><br><br>
+        <div class="welcome-message">
+            <h1>Welcome to Book Deletion Page</h1>
+        </div>
+        </div>
+</section>
+<br><br><br>
+
+<script>
+  function booklist() {
+    event.preventDefault()
+    let data = null
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+        const res = JSON.parse(this.responseText);
+        var table = '<table class="booklist">  <tr><th>Book ISBN</th><th>Book ID</th><th>Book Name</th><th>Author</th><th>Publish Year</th><th>Delete</th></tr>', element = "";
+        if (res.data.length > 0) {
+          for (let index = 0; index < res.data.length; index++) {
+            element += '<tr><td>' + res.data[index].BookISBN + '</td><td>' + res.data[index].BookID 
+                + '</td><td>' + res.data[index].BookName + '</td><td>' + res.data[index].Author 
+                    + '</td><td>' + res.data[index].PublishYear
+                            + '</td><td><button class="submit-button" onclick="deleteBook (' + res.data[index].BookID + ')">Delete</button></td></tr>';
+
+          }
+        }
+        table += element;
+        table += '</table>'
+        document.getElementById("booklist").innerHTML = table;
+      }
+    });
+    xhr.open("GET", "http://localhost:4000/viewbook");
+    xhr.setRequestHeader("Accept", "*/*");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+  }
+</script>
+
+
+<script>
+  function deleteBook(BookID) {
+    if (confirm("Are you sure you want to delete this Book?")) {
+      let data = null;
+      const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          console.log(this.responseText);
+          // Handle the response after deleting the user
+          // For example, you can refresh the user list by calling the userlist() function
+          booklist();
+        }
+      });
+      xhr.open("DELETE", "http://localhost:4000/deletebook");
+      xhr.setRequestHeader("Accept", "*/*");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify({ BookID: BookID }));
+      xhr.send(data);
+    }
+  }
+</script>
+
+
+<script>
+  function searchTable() {
+    var input = document.getElementById("search").value.toLowerCase();
+    var data = { searchInput: input };
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    xhr.addEventListener("readystatechange", function() {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+        var res = JSON.parse(this.responseText);
+        var table = '<table class="booklist">  <tr><th>Book ISBN</th><th>Book ID</th><th>Book Name</th><th>Author</th><th>Publish Year</th><th>Delete</th></tr>', element = "";
+        var element = "";
+        if (res.data.length > 0) {
+          for (var index = 0; index < res.data.length; index++) {
+            element += '<tr><td>' + res.data[index].BookISBN + '</td><td>' + res.data[index].BookID 
+                + '</td><td>' + res.data[index].BookName + '</td><td>' + res.data[index].Author 
+                    + '</td><td>' + res.data[index].PublishYear
+                            + '</td><td><button class="submit-button" onclick="deleteBook (' + res.data[index].BookID + ')">Delete</button></td></tr>';
+
+          }
+        }
+        table += element;
+        table += '</table>'
+        document.getElementById("booklist").innerHTML = table;
+      }
+    });
+    xhr.open("POST", "http://localhost:4000/searchbook");
+    xhr.setRequestHeader("Accept", "*/*");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(data));
+  }
+</script>
+
+<center>
+  <div class="search-form">
+    <input type="text" placeholder="Search..." id="search">
+</div>
+<button class="submit-button"  id="search" onclick="searchTable()" >Search</button>
+<button class="submit-button"  onclick="booklist()">View</button>
+<br>
+    <table id="booklist">
+      
+      <br>
+    </table>
+<br><br><br><br><br>
+
+</center>
+</body>
+</html>   

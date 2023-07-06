@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Studio landing page.">
+    <meta name="author" content="Devcrud">
+    <title>User Registration</title>
+    <!-- Font icons -->
+<link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+
+<!-- Bootstrap + Creative Studio main styles -->
+<link rel="stylesheet" href="assets/css/creative-studio.css">
+
+<style>
+    
+    .animated-link {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #f8f6f6;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .animated-link:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #f40a58;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+
+    .animated-link:hover:before {
+        transform: scaleX(1);
+    }
+
+
+    .welcome-message {
+        text-align: center;
+        font-size: 24px;
+        margin-top: 50px;
+        color: #e7dcde;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+</style>
+
+<script>
+    function goBack() {
+        window.history.back(); // Go back to the previous page
+    }
+</script>
+
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        .registration-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color:transparent;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .form-group .error-message {
+            color: #ff0000;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .submit-button {
+            background-color: #f40a58;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #c20a48;
+        }
+
+        #errorBox {
+            color: #ff0000;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        #successMessage {
+            color: #00b300;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+  </style>
+  <style>
+    .registration-form {
+      display: none;
+      border-color: #ccc;
+    }
+  </style>
+  
+
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- Page Navigation -->
+<nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="index.html#home" class="animated-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="UserDetails.html" class="animated-link">User</a>
+                </li>
+                <li class="nav-item">
+                    <a href="UserRegister.html" class="animated-link">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="UserDelete.html" class="animated-link">Deletion</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="animated-link" onclick="goBack()">Back</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End Of Page Navigation -->
+
+<section class="has-bg-img py-md">
+    <div class="container text-center"><br><br><br><br><br><br>
+        <div class="welcome-message">
+            <h1>Welcome to User Registration Page</h1>
+        </div>
+        </div>
+</section>
+<br><br><br>
+
+
+
+
+<div class="section" id="section">
+    
+    <center>
+        <button onclick="showRegistrationForm()" style="background-color: #f40a58; color:white; font-weight: bold; padding: 10px 20px; border-radius: 3px; border: none; font-size: 16px; cursor: pointer;">User Register</button>
+        <div id="registrationForm" class="registration-form" style="display: none;">
+            <div class="form-container">
+                <form name="registrationForm" onsubmit="return validateForm()">
+                    <div class="form-group" id="userID-container">
+                        <label for="userID">User ID:</label>
+                        <input type="text" id="userID" name="userID" placeholder="Enter User ID">
+                        <div id="userID-error" class="error-message"></div>
+                    </div>
+                    <div class="form-group" id="username-container">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" placeholder="Enter Username">
+                        <div id="username-error" class="error-message"></div>
+                    </div>
+                    
+                    <div class="form-group" id="admissionNo-container">
+                        <label for="admissionNo">Admission No:</label>
+                        <input type="text" id="admissionNo" name="admissionNo" placeholder="Enter Admission No">
+                        <div id="admissionNo-error" class="error-message"></div>
+                    </div>
+
+                    <div class="form-group" id="email-container">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email">
+                        <div id="email-error" class="error-message"></div>
+                    </div>
+
+                    <div class="form-group" id="phoneNo-container">
+                        <label for="phoneNo">Phone Number:</label>
+                        <input type="text" id="phoneNo" name="phoneNo" placeholder="Enter Phone Number">
+                        <div id="phoneNo-error" class="error-message"></div>
+                    </div>
+
+                    <div class="form-group" id="sex-container">
+                        <label for="sex">Sex:</label>
+                        <select id="sex" name="sex">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div id="sex-error" class="error-message"></div>
+                    </div>
+
+                    <div class="form-group" id="address-container">
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" placeholder="Enter Address"></textarea>
+                        <div id="address-error" class="error-message"></div>
+                    </div>
+
+                    <input type="submit" value="Register" onclick="Register()" class="submit-button">
+
+                    <div id="errorBox"></div>
+                    <div id="successMessage" style="display: none;">Registration successful!</div>
+                </form>
+            </div>
+        </div>
+    </section>
+    </div>
+    </center>
+</body>
+<br><br><br><br>
+
+<script>
+    function showRegistrationForm() {
+      var form = document.getElementById("registrationForm");
+      form.style.display = "block";
+    }
+  </script>
+  <script>
+
+function showSuccessMessage() {
+    var successMessage = document.getElementById("successMessage");
+    successMessage.style.display = "block";
+    // Display an alert message
+    //alert("Registration successful!");
+  }
+  
+
+function Register() {
+  event.preventDefault();
+
+  if (!validateForm()) {
+    return; // Stop further execution if the form is not valid
+  }
+
+  let data = {};
+  data.userID = document.getElementById("userID").value;
+  data.username = document.getElementById("username").value;
+  data.admissionNo = document.getElementById("admissionNo").value;
+  data.email = document.getElementById("email").value;
+  data.phoneNo = document.getElementById("phoneNo").value;
+  data.sex = document.getElementById("sex").value;
+  data.address = document.getElementById("address").value;
+  data = JSON.stringify(data);
+
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      console.log(this.responseText);
+      showSuccessMessage();
+    }
+  });
+
+  xhr.open("POST", "http://localhost:4000/signup");
+
+  xhr.setRequestHeader("Accept", "*/*");
+  xhr.setRequestHeader("User-Agent", "Thunder Client (https://www.thunderclient.com)");
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.send(data);
+}
+
+      </script>
+  <script>
+    function validateForm() {
+      var userID = document.forms["registrationForm"]["userID"].value;
+      var username = document.forms["registrationForm"]["username"].value;
+      var admissionNo = document.forms["registrationForm"]["admissionNo"].value;
+      var email = document.forms["registrationForm"]["email"].value;
+      var phoneNo = document.forms["registrationForm"]["phoneNo"].value;
+      var sex = document.forms["registrationForm"]["sex"].value;
+      var address = document.forms["registrationForm"]["address"].value;
+      
+      var errorBox = document.getElementById("errorBox");
+      errorBox.innerHTML = ""; // Clear previous error messages
+      
+      var isValid = true;
+      
+      // User ID validation
+      if (!/^\d+$/.test(userID)) {
+        showError("userID", "User ID should be a number.");
+        isValid = false;
+      }
+      
+      // Username validation
+      if (username.trim() === "") {
+        showError("username", "Username is required.");
+        isValid = false;
+      }
+      
+      // Admission number validation
+      if (!/^\d+$/.test(admissionNo)) {
+        showError("admissionNo", "Admission number should be a number.");
+        isValid = false;
+      }
+      
+      // Email validation
+      if (!/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(email)) {
+        showError("email", "Please enter a valid email address.");
+        isValid = false;
+      }
+      
+      // Phone number validation
+      if (!/^\d{10}$/.test(phoneNo)) {
+        showError("phoneNo", "Phone number should be a 10-digit number.");
+        isValid = false;
+      }
+      
+      // Sex validation
+      if (sex.trim() === "") {
+        showError("sex", "Please select your sex.");
+        isValid = false;
+      }
+      
+      // Address validation
+      if (address.trim() === "") {
+        showError("address", "Address is required.");
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+    
+    function showError(fieldId, errorMessage) {
+      var fieldContainer = document.getElementById(fieldId + "-container");
+      fieldContainer.classList.add("error");
+      
+      var errorContainer = document.getElementById(fieldId + "-error");
+      errorContainer.textContent = errorMessage;
+    }
+
+    function removeError(fieldId) {
+  var fieldContainer = document.getElementById(fieldId + "-container");
+  fieldContainer.classList.remove("error");
+  
+  var errorContainer = document.getElementById(fieldId + "-error");
+  errorContainer.textContent = "";
+}
+  </script>
+
