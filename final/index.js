@@ -6,8 +6,6 @@ const path = require('path');
 const User=require("./UserSchema.js"); 
 const Admin=require("./AdminSchema.js");  
 const Book=require("./BookSchema.js"); 
-const Borrow=require("./BorrowSchema.js"); 
-const BorrowedBook = require("./borrowedBook.js");
 mongoose.connect('mongodb+srv://Anjana:anjana5203@cluster0.sgpv1lx.mongodb.net/MyExp');
 const app = express();
 app.use(bodyParser.json());
@@ -179,12 +177,6 @@ async function fetchAdmin(req,res){
   res.send({"status":200,"data":data});
 }
 
-app.post('/borrowup',(req,res)=>{console.log(req.body)
-  console.log(req.body)
-  res.send({"status":200,"data":"Borrow List created Successfully"})
-  Borrow.create(req.body);
-})
-
 
 
 app.post('/search', (req, res) => {
@@ -210,55 +202,6 @@ async function searchBK(searchInput, res) {
     res.status(500).send({ status: 500, message: 'An error occurred during the search.' });
   }
 }
-
-app.post('/borrow', async (req, res) => {
-  const { userID, bookID } = req.body;
-
-  // Check if the book is available
-  const book = await Book.findOne({ bookID }).exec();
-  if (!book) {
-    return res.json({ success: false, error: 'The book is not available for borrowing.' });
-  }
-
-  // Check if the user exists
-  const user = await User.findOne({ userID }).exec();
-  if (!user) {
-    return res.json({ success: false, error: 'The user does not exist.' });
-  }
-
-  // Initialize borrowedBooks if it's undefined
-  if (!user.borrowedBooks) {
-    user.borrowedBooks = [];
-  }
-
-  // Check if the user has already borrowed the book
-  if (user.borrowedBooks.includes(bookID)) {
-    return res.json({ success: false, error: 'You have already borrowed this book.' });
-  }
-
-  // Update the user's borrowed books and save the changes
-  user.borrowedBooks.push(bookID);
-  await user.save();
-
-  // Update the book's availability status and save the changes
-  book.available = false;
-  await book.save();
-
-  return res.json({ success: true, message: 'Book borrowed successfully.' });
-});
-
-
-app.get("/borrowedbooks", (req, res) => {
-  BorrowedBook.find()
-    .then(borrowedBooks => {
-      res.json(borrowedBooks);
-    })
-    .catch(error => {
-      console.error("Error retrieving borrowed books:", error);
-      res.status(500).json({ error: "Internal Server Error" });
-    });
-});
-
 
 
 
