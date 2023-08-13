@@ -1,257 +1,266 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with Creative Studio landing page.">
-    <meta name="author" content="Devcrud">
-    <title>Admin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with Creative Studio landing page.">
+  <meta name="author" content="Devcrud">
+  <title>Admin</title>
 
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+  <!-- font icons -->
+  <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
 
-    <!-- Bootstrap + Creative Studio main styles -->
-	<link rel="stylesheet" href="assets/css/creative-studio.css">
+  <!-- Bootstrap + Creative Studio main styles -->
+  <link rel="stylesheet" href="assets/css/creative-studio.css">
 
-    <style>
-        .animated-link {
-  display: inline-block;
-  padding: 10px 20px;
-  color: #f8f6f6;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
+  <style>
+    .animated-link {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #f8f6f6;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
 
-.animated-link:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #f40a58;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
+    .animated-link:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #f40a58;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
 
-.animated-link:hover:before {
-  transform: scaleX(1);
-}
+    .animated-link:hover:before {
+      transform: scaleX(1);
+    }
 
 
-        .welcome-message {
-    text-align: center;
-    font-size: 24px;
-    margin-top: 50px;
-    color: #e7dcde;
-    animation: fadeIn 2s ease-in-out;
-}
+    .welcome-message {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 50px;
+      color: #e7dcde;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .admin-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #dac7c7;
-  border-radius: 10px;
-  text-align: justify;
-  margin: 0 auto;
-  max-width: 400px;
-  box-shadow: 0 2px 6px rgba(111, 109, 109, 0.1);
-}
-
-.profile-picture img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.profile-details {
-  margin-top: 20px;
-}
-
-.profile-details h3 {
-  font-size: 26px;
-  margin-bottom: 5px;
-}
-
-.profile-details p {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: black;
-}
-
-.qualification-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
-  color: black;
-
-  text-align:center;
-}
-
-.qualification-list li {
-  margin-bottom: 8px;
-  
-}
-      .profile-details {
-        background-color: #f5f5f5;
-        border-radius: 5px;
-        padding: 20px;
-        margin-bottom: 20px;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
       }
-    
-      .profile-details h3 {
-        color: #0f0d0d;
-        font-size: 24px;
-        margin-bottom: 10px;
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
       }
-    
-      .profile-details p {
-        color: #0a0101;
-        margin-bottom: 5px;
-      }
-    </style>
-    <style>
-      .profile-card {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: left;
-}
+    }
 
-.profile-card h2 {
-  color: #333;
-  margin-bottom: 10px;
-}
+    .admin-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-color: #dac7c7;
+      border-radius: 10px;
+      text-align: justify;
+      margin: 0 auto;
+      max-width: 400px;
+      box-shadow: 0 2px 6px rgba(111, 109, 109, 0.1);
+    }
 
-.profile-card p {
-  margin: 5px 0;
-}
+    .profile-picture img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
 
-.profile-card strong {
-  font-weight: bold;
-}
+    .profile-details {
+      margin-top: 20px;
+    }
 
-    </style>
+    .profile-details h3 {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
 
-    <script>
-        function goBack() {
-          window.history.back(); // Go back to the previous page
-        }
-    </script>
+    .profile-details p {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .qualification-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      color: black;
+
+      text-align: center;
+    }
+
+    .qualification-list li {
+      margin-bottom: 8px;
+
+    }
+
+    .profile-details {
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .profile-details h3 {
+      color: #0f0d0d;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .profile-details p {
+      color: #0a0101;
+      margin-bottom: 5px;
+    }
+  </style>
+  <style>
+    .profile-card {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .profile-card h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .profile-card p {
+      margin: 5px 0;
+    }
+
+    .profile-card strong {
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    function goBack() {
+      window.history.back(); // Go back to the previous page
+    }
+  </script>
 </head>
+
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <!-- Page Navigation -->
-<nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+  <!-- Page Navigation -->
+  <nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span></span>
-        </button>
+      <a class="navbar-brand" href="#">
+        <img src="assets/imgs/logo.png"
+          alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="index.html#home" class="animated-link">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a href="UserDetails.html" class="animated-link">User</a>
-              </li>
-                <li class="nav-item">
-                  <a href="BookDetails.html" class="animated-link">Book</a>
-              </li>
-                <li class="nav-item">
-                    <a href="Borrow.html" class="animated-link">Borrow</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="animated-link" onclick="goBack()">Back</a>
-                </li>
-            </ul>
-        </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="index.html#home" class="animated-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="UserDetails.html" class="animated-link">User</a>
+          </li>
+          <li class="nav-item">
+            <a href="BookDetails.html" class="animated-link">Book</a>
+          </li>
+          <li class="nav-item">
+            <a href="adminborrow.html" class="animated-link">Borrow</a>
+          </li>
+          <li class="nav-item">
+            <a href="adminReturn.html" class="animated-link">Return</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="animated-link" onclick="goBack()">Back</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
-    <section class="has-bg-img py-md">
-        <div class="container text-center"><br><br><br><br><br><br>
-            <div class="welcome-message">
-                <h1>Admin Login</h1>
-            </div>
-        </div>
-    </section>
+  <section class="has-bg-img py-md">
+    <div class="container text-center"><br><br><br><br><br><br>
+      <div class="welcome-message">
+        <h1>Admin Login</h1>
+      </div>
+    </div>
+  </section>
 
-    <center><br><br><br>
-        
-        <button class="btn btn-primary"  onclick="adminlist()">View Profile</button><br>
-    
- 
+  <center>
+    <br><br><br>
+
+    <button class="btn btn-primary" onclick="adminlist()">View Profile</button><br>
+
+
     <table id="adminlist">
       <br>
     </table>
 
-   
+
     <script>
-     function adminlist() {
-  event.preventDefault();
-  let data = null;
-  const xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-      const res = JSON.parse(this.responseText);
+      function adminlist() {
+        event.preventDefault();
+        let data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+            const res = JSON.parse(this.responseText);
 
-      var adminProfile = '<div class="admin-profile">';
-      adminProfile += '<div class="profile-picture">';
-      adminProfile += '<img src="assets/imgs/about.jpg" alt="Admin Profile Picture">';
-      adminProfile += '</div>';
-      adminProfile += '<div class="profile-details">';
-      adminProfile += '<h3>Library Administrator</h3>';
-      adminProfile += '<br>';
-      if (res.data.length > 0) {
-        for (let index = 0; index < res.data.length; index++) {
-          adminProfile += '<p>Name: ' + res.data[index].name + '</p>';
-          adminProfile += '<p>Email: ' + res.data[index].email + '</p>';
-          adminProfile += '<p>Gender: ' + res.data[index].gender + '</p>';
-          adminProfile += '<p>Phone No: ' + res.data[index].phone + '</p>';
-          adminProfile += '<p>Working Hours: ' + res.data[index].Working + '</p>';
-          adminProfile += '<br>';
-        }
+            var adminProfile = '<div class="admin-profile">';
+            adminProfile += '<div class="profile-picture">';
+            adminProfile += '<img src="assets/imgs/about.jpg" alt="Admin Profile Picture">';
+            adminProfile += '</div>';
+            adminProfile += '<div class="profile-details">';
+            adminProfile += '<h3>Library Administrator</h3>';
+            adminProfile += '<br>';
+            if (res.data.length > 0) {
+              for (let index = 0; index < res.data.length; index++) {
+                adminProfile += '<p>Name: ' + res.data[index].name + '</p>';
+                adminProfile += '<p>Email: ' + res.data[index].email + '</p>';
+                adminProfile += '<p>Gender: ' + res.data[index].gender + '</p>';
+                adminProfile += '<p>Phone No: ' + res.data[index].phone + '</p>';
+                adminProfile += '<p>Working Hours: ' + res.data[index].Working + '</p>';
+                adminProfile += '<br>';
+              }
+            }
+            adminProfile += '</div>';
+            adminProfile += '</div>';
+            document.getElementById("adminlist").innerHTML = adminProfile;
+          }
+        });
+        xhr.open("GET", "http://localhost:4000/viewadmin");
+        xhr.setRequestHeader("Accept", "*/*");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
       }
-      adminProfile += '</div>';
-      adminProfile += '</div>';
-      document.getElementById("adminlist").innerHTML = adminProfile;
-    }
-  });
-  xhr.open("GET", "http://localhost:4000/viewadmin");
-  xhr.setRequestHeader("Accept", "*/*");
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(data);
-}
     </script>
-    </center>
-    <br><br><br>
-    </body>
-</html>
+  </center>
+  <br><br><br>
+</body>
 
+</html>

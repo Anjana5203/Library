@@ -6,8 +6,13 @@ const path = require('path');
 const User=require("./UserSchema.js"); 
 const Admin=require("./AdminSchema.js");  
 const Book=require("./BookSchema.js"); 
+const borrow=require("./borrowreq.js")
+const fileUploader = require('express-fileupload'); //image
+
 mongoose.connect('mongodb+srv://Anjana:anjana5203@cluster0.sgpv1lx.mongodb.net/MyExp');
 const app = express();
+app.use(fileUploader());
+
 app.use(bodyParser.json());
 app.use(express.json());
 let PORT = 4000;
@@ -36,7 +41,7 @@ async function login(req,res){
   var data=await User.findOne(req.body);
   data=data||0;
   if(data!=0){
-    res.send({"status":200,"data":"valid user"})
+    res.send({"status":200,"data":"valid user", "user":data})
   }
   else(
     res.send({"status":404,"data":"invalid user"})
@@ -70,8 +75,6 @@ app.get('/viewuser', (req, res) => {console.log(req.body)
   console.log(req.query)
   fetchusers(req,res)
 })
-
-
 async function fetchusers(req,res){
   var data = await User.find();
   res.send({"status":200,"data":data});
@@ -106,15 +109,6 @@ app.delete('/deleteuser', async (req, res) => {
   }
 });
 
-
-
-
-
-app.post('/bookup',(req,res)=>{console.log(req.body)
-  console.log(req.body)
-  res.send({"status":200,"data":"Book created Sus"})
-  Book.create(req.body);
-})
 
 
 app.get('/viewbook', (req, res) => {console.log(req.body)
@@ -177,7 +171,15 @@ async function fetchAdmin(req,res){
   res.send({"status":200,"data":data});
 }
 
-
+app.get('/profile', (req, res) => {console.log(req.body)
+  console.log(req.query)
+  fetchAUser(req,res)
+})
+async function fetchAUser(req,res){
+  const id = req.query.id;
+  var data = await User.findOne({"uid":id});
+  res.send({"status":200,"data":data});
+}
 
 app.post('/search', (req, res) => {
   const {Author, BookName} = req.body
@@ -205,44 +207,96 @@ async function searchBK(searchInput, res) {
 
 
 
+app.post('/borrowreq',async (req,res)=>{ console.log(req.body)
+  const {BookID, email} = req.body
+  res.send({"status":200,"data":"Borrowed Sus"})
+  borrow.create(req.body);
 
-app.get('/', (req, res) => {
-  console.log(req.body);
-    console.log(req.query);
-    console.log(req.body);
-    datafetch(res)
-  })
-
-async function datafetch(res){  
-  res.send(await User.find());
-}
-app.get('/', (req, res) => {
-  console.log(req.body);
-    console.log(req.query);
-    console.log(req.body);
-    datafetch(res)
-  })
-
-  app.get('/', (req, res) => {
-    res.send("ok");
-    })
- 
-  
-app.put('/',(req,res)=>{
-  console.log(req.query);
-  console.log(req.body);
-  dataupdate(req,res)
 })
-  async function dataupdate(req,res){
-    console.log(req.query);
-    console.log(req.body);
-    res.send(await User.updateOne({"id":req.query.id},{$set:req.body}))
+
+
+
+app.get('/borrowreq',async(req,res)=>{
+  console.log(req.body)
+  console.log(req.query)
+  fetchborrowreq(req, res)
+})
+async function fetchborrowreq(req, res) {
+  var data = await borrow.find();
+  res.send({ "status": 200, "data": data });
+
 }
-    async function datadelete(req,res){
-      console.log(req.query);
-      console.log(req.body);
-      res.send(await User.deleteOne({"id":req.query.id}))
+
+
+
+app.get('/borrow',async(req,res)=>{
+  console.log(req.body)
+  console.log(req.query)
+  fetchBook(req, res)
+})
+async function fetchBook(req, res) {
+  var data = await Book.find({borrowed:false});
+  res.send({ "status": 200, "data": data });
+}
+
+app.post('/approve', async(req,res)=>{
+  const BookID=req.body.BookID
+  await borrow.findOneAndUpdate({BookID},{status:"Approved"})
+  await Book.findOneAndUpdate({BookID},{borrowed:true})
+
+  res.send({ "status": 200, "data": "Borrow approved" })
+})
+
+app.get('/viewborrowed', (req, res) => {
+  console.log(req.body)
+  console.log(req.query)
+  fetchborrowed(req, res)
+})
+async function fetchborrowed(req, res) {
+  var data = await borrow.find({status:"Approved"});
+  res.send({ "status": 200, "data": data });
+}
+
+app.post('/return', async(req,res)=>{
+  const BookID=req.body.BookID
+  await borrow.findOneAndUpdate({BookID},{status:"Returned"})
+  await Book.findOneAndUpdate({BookID},{borrowed:false})
+  res.send({ "status": 200, "data": "Borrow returned" })
+
+})
+
+
+
+
+
+// BOOK ADD FUNCTIONALITIES
+app.post("/bookup", async (req, res) => {
+  console.log(req.body);
+  const { BookISBN,BookID,BookName,Author,PublishYear,Description,image } = req.body;
+  try {
+    console.log({ BookISBN,BookID,BookName,Author,PublishYear,Description,image });
+    let car = await Book.create({BookISBN,BookID,BookName,Author,PublishYear,Description ,image });
+    console.log(car);
+    
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ status: 500, message: "An error occurred during." });
   }
+});
+
+app.get("/books",async(req,res)=>{
+  try {
+    res.send(await Book.find())
+    
+  } catch (e) {
+    console.error(e);
+    res.status(500).send({ status: 500, message: "An error occurred during." });
+  }
+})
+
+
+
+
 app.delete('/user',(reg,res)=>{res.send("DELETE LIST");});
 
 app.listen(PORT,() =>console.log(`Listening on port${PORT}..`));

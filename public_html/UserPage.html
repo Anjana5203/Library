@@ -1,38 +1,38 @@
- 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with Creative Studio landing page.">
-    <meta name="author" content="Devcrud">
-    <title>User</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with Creative Studio landing page.">
+  <meta name="author" content="Devcrud">
+  <title>User</title>
 
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+  <!-- font icons -->
+  <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
 
-    <!-- Bootstrap + Creative Studio main styles -->
-	<link rel="stylesheet" href="assets/css/creative-studio.css">
-    
+  <!-- Bootstrap + Creative Studio main styles -->
+  <link rel="stylesheet" href="assets/css/creative-studio.css">
+
 
   <style>
-
     /* CSS styles for the table */
     table {
       border-collapse: collapse;
       width: 50%;
     }
-    
-    th, td {
+
+    th,
+    td {
       padding: 10px;
       text-align: left;
       border-bottom: 1px solid #ddd;
     }
-    
+
     tr:hover {
       background-color: #f5f5f5;
     }
-    
+
     /* CSS styles for the table header */
     th {
       background-color: #DC2861;
@@ -40,233 +40,254 @@
     }
   </style>
 
-    <style>
-.view-options {
-        text-align: center;
+  <style>
+    .view-options {
+      text-align: center;
     }
 
     .view-options .btn-group {
-        display: inline-block;
+      display: inline-block;
     }
 
     .view-options .btn {
-        margin-right: 10px;
-        border-radius: 5px;
+      margin-right: 10px;
+      border-radius: 5px;
     }
 
 
-.animated-link {
-  display: inline-block;
-  padding: 10px 20px;
-  color: #f8f6f6;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
+    .animated-link {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #f8f6f6;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
 
-.animated-link:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: #f40a58;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
+    .animated-link:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #f40a58;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
 
-.animated-link:hover:before {
-  transform: scaleX(1);
-}
-
-
-        .welcome-message {
-    text-align: center;
-    font-size: 24px;
-    margin-top: 50px;
-    color: #e7dcde;
-    animation: fadeIn 2s ease-in-out;
-}
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .admin-profile {
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #dac7c7;
-  border-radius: 10px;
-  text-align: justify;
-  margin: 0 auto;
-  max-width: 400px;
-  box-shadow: 0 2px 6px rgba(111, 109, 109, 0.1);
-}
-
-.profile-picture img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.profile-details {
-  margin-top: 20px;
-}
-
-.profile-details h3 {
-  font-size: 26px;
-  margin-bottom: 5px;
-}
-
-.profile-details p {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: black;
-}
+    .animated-link:hover:before {
+      transform: scaleX(1);
+    }
 
 
+    .welcome-message {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 50px;
+      color: #e7dcde;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-.search-form {
-        text-align: center;
-        margin-bottom: 30px;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .admin-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background-color: #dac7c7;
+      border-radius: 10px;
+      text-align: justify;
+      margin: 0 auto;
+      max-width: 400px;
+      box-shadow: 0 2px 6px rgba(111, 109, 109, 0.1);
+    }
+
+    .profile-picture img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .profile-details {
+      margin-top: 20px;
+    }
+
+    .profile-details h3 {
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    .profile-details p {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: black;
+    }
+
+
+
+    .search-form {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
     .search-form input[type="text"] {
-        width: 300px;
-        padding: 10px;
-        border: 3px solid #111010;
-        border-radius: 5px;
-        outline: none;
+      width: 300px;
+      padding: 10px;
+      border: 3px solid #111010;
+      border-radius: 5px;
+      outline: none;
     }
 
-    
+
     .submit-button {
-            background-color: #f40a58;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 3px;
-            font-size: 16px;
-            font-weight: bolder;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+      background-color: #f40a58;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      font-size: 16px;
+      font-weight: bolder;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        .submit-button:hover {
-            background-color: #c20a48;
-        }
+    .submit-button:hover {
+      background-color: #c20a48;
+    }
+  </style>
 
-    </style>
-
-<script>
+  <script>
     function goBack() {
       window.history.back(); // Go back to the previous page
     }
-    </script>
+  </script>
 
-  
+
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    
-    <!-- Page Navigation -->
-    <nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="index.html#home" class="animated-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="books.html" class="animated-link">Books</a>
-                  </li>
-                    <li class="nav-item">
-                        <a href="#" class="animated-link"  onclick="goBack()">Back</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- End Of Page Navigation -->
-    <section class="has-bg-img py-md">
-        <div class="container text-center"><br><br><br><br><br><br>
-            <div class="welcome-message">
-                <h1>Welcome to User Login</h1>
-            </div>
-                </div>
-            </div>
-        </div>
-    </section>
-<br><br><br>
-<center>
-<button class="btn btn-primary"  onclick="  function getUserProfile()">View Profile</button><br>
-    
- 
-    <table id="getUserProfile">
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+  <!-- Page Navigation -->
+  <nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="assets/imgs/logo.png"
+          alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="index.html#home" class="animated-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="books.html" class="animated-link">Books</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="index.html" class="animated-link" onclick ="preventBack()" >Logout</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="animated-link" onclick="goBack()">Back</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Of Page Navigation -->
+  <section class="has-bg-img py-md">
+    <div class="container text-center"><br><br><br><br><br><br>
+      <div class="welcome-message">
+        <h1>Welcome to User Login</h1>
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+  <br><br><br>
+  <center>
+
+    <div class="view-options">
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="userlist()">View Profile</button><br>
+      </div>
+    </div>
+    </div>
+
+
+
+    <table id="userlist">
       <br>
     </table>
-    
-<script>
-  function getUserProfile() {
-    event.preventDefault();
-    let data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-        console.log(this.responseText);
-        const res = JSON.parse(this.responseText);
 
-        var userProfile = '<div class="user-profile">';
-        userProfile += '<div class="profile-picture">';
-        userProfile += '<img src="assets/imgs/about.jpg" alt="User Profile Picture">';
-        userProfile += '</div>';
-        userProfile += '<div class="profile-details">';
-        userProfile += '<h3>User Profile</h3>';
-        userProfile += '<br>';
-        userProfile += '<p>User ID: ' + res.userID + '</p>';
-        userProfile += '<p>Username: ' + res.username + '</p>';
-        userProfile += '<p>Admission No: ' + res.admissionNo + '</p>';
-        userProfile += '<p>Email: ' + res.email + '</p>';
-        userProfile += '<p>Phone No: ' + res.phoneNo + '</p>';
-        userProfile += '<p>Sex: ' + res.sex + '</p>';
-        userProfile += '<p>Address: ' + res.address + '</p>';
-        userProfile += '<br>';
-        userProfile += '</div>';
-        userProfile += '</div>';
 
-        document.getElementById("userProfile").innerHTML = userProfile;
+    <script>
+
+      function userlist() {
+        event.preventDefault();
+        let data = null;
+        const xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+            const res = JSON.parse(this.responseText);
+
+            var adminProfile = '<div class="admin-profile">';
+            adminProfile += '<div class="profile-picture">';
+            adminProfile += '<img src="assets/imgs/about.jpg" alt="Admin Profile Picture">';
+            adminProfile += '</div>';
+            adminProfile += '<div class="profile-details">';
+            adminProfile += '<h3>Student</h3>';
+            adminProfile += '<br>';
+            adminProfile += '<p>User ID: ' + res.data.userID + '</p>';
+            adminProfile += '<p>Name: ' + res.data.username + '</p>';
+            adminProfile += '<p>Adminssion No: ' + res.data.admissionNo + '</p>';
+            adminProfile += '<p>Email:  ' + res.data.email + '</p>';
+            adminProfile += '<p>Phone No:  ' + res.data.phoneNo + '</p>';
+            adminProfile += '<p>Gender: ' + res.data.sex+ '</p>';
+            adminProfile += '<p>Address: ' + res.data.address + '</p>';
+            adminProfile += '<br>';
+            adminProfile += '</div>';
+            adminProfile += '</div>';
+            document.getElementById("userlist").innerHTML = adminProfile;
+          }
+        });
+        xhr.open("GET", "http://localhost:4000/profile/?id=" + localStorage.getItem("uid"));
+        xhr.setRequestHeader("Accept", "*/*");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
       }
-    });
-    xhr.open("GET", "http://localhost:4000/viewuserprofile");
-    xhr.setRequestHeader("Accept", "*/*");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(data);
-  }
-</script>
-</center>
-      <br><br><br>
-      <br><br><br>
+    </script>
 
-    </body>
-    </html>
+<script type = "text/javascript" >
+   function preventBack(){window.history.forward();}
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+</script>
+  </center>
+  <br><br><br>
+  <br><br><br>
+
+</body>
+
+</html>

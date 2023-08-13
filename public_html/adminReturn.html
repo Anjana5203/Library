@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Studio landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Admin Return</title>
+
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+
+    <!-- Bootstrap + Creative Studio main styles -->
+	<link rel="stylesheet" href="assets/css/creative-studio.css">
+    
+    <style>
+        .view-options {
+                text-align: center;
+            }
+        
+            .view-options .btn-group {
+                display: inline-block;
+            }
+        
+            .view-options .btn {
+                margin-right: 10px;
+                border-radius: 5px;
+            }
+        
+        
+        .animated-link {
+          display: inline-block;
+          padding: 10px 20px;
+          color: #f8f6f6;
+          text-decoration: none;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .animated-link:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background-color: #f40a58;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+        }
+        
+        .animated-link:hover:before {
+          transform: scaleX(1);
+        }
+        
+        
+                .welcome-message {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 50px;
+            color: #e7dcde;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(50px);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+    
+.submit-button {
+        background-color: #f40a58;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        font-size: 16px;
+        font-weight: bolder;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: #c20a48;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 50%;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+    
+    /* CSS styles for the table header */
+    th {
+      background-color: #DC2861;
+      color: white;
+    }
+        
+</style>        
+
+<script>
+    function goBack() {
+      window.history.back(); // Go back to the previous page
+    }
+    </script>
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <!-- Page Navigation -->
+    <nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/imgs/logo.png" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="index.html#home" class="animated-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="animated-link"  onclick="goBack()">Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Of Page Navigation -->
+    <section class="has-bg-img py-md">
+        <div class="container text-center"><br><br><br><br><br><br>
+            <div class="welcome-message">
+               <h1>Book Borrowed List</h1>
+            </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <br><br><br>
+
+      <center>
+        <button class="btn btn-primary"  onclick="Booklist()">View List</button><br><br><br>
+
+        <table id="Booklist">
+
+        </table>
+    
+                <script>
+                  function Booklist() {
+                    event.preventDefault()
+                    let data = null
+                    const xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+                    xhr.addEventListener("readystatechange", function () {
+                      if (this.readyState === this.DONE) {
+                        console.log(this.responseText);
+                        const res = JSON.parse(this.responseText);
+                        var table = '<table class="Booklist">  <tr><th>User Email</th><th>Book ID</th><th>Status</th><th>Action</th></tr>', element = "";
+                        if (res.data.length > 0) {
+                          for (let index = 0; index < res.data.length; index++) {
+                            element += '<tr><td>'  + res.data[index].email + '</td><td>' + res.data[index].BookID  + '</td><td>' + res.data[index].status
+                                + '</td><td><button class="submit-button" onclick="ReturnBook (' +res.data[index].BookID +')" ' +
+                          (res.data[index].status === 'Returned' ? 'disabled' : '') +  '>Return</button></td></tr>';
+                          }
+                        }
+                        table += element;
+                        table += '</table>'
+                        document.getElementById("Booklist").innerHTML = table;
+                        
+                      }
+                    });
+                    xhr.open("GET", "http://localhost:4000/borrowreq");
+                    xhr.setRequestHeader("Accept", "*/*");
+                    xhr.setRequestHeader("Content-Type", "application/json");
+                    xhr.send(data);
+                  }
+                </script>
+
+                <br><BR><BR><BR>
+
+                    <script>
+                        function ReturnBook(BookID) {
+                          alert("Book Returned");
+                          window.location.reload();
+
+                           const xhr = new XMLHttpRequest();
+                           xhr.withCredentials = true;
+                     
+                           xhr.addEventListener("readystatechange", function () {
+                              if (this.readyState === this.DONE) {
+                               console.log(this.responseText);
+                             
+                              // Handle the response after deleting the user
+                          // For example, you can refresh the user list by calling the userlist() function
+                              Booklist();
+                                }
+                            });
+                           xhr.open("POST", "http://localhost:4000/return");
+                           xhr.setRequestHeader("Accept", "*/*");
+                           xhr.setRequestHeader("Content-Type", "application/json");
+                           xhr.send(JSON.stringify({ BookID: BookID}));
+                           const payload = {
+                 BookID: BookID,
+                userID:userID,
+                 email: localStorage.getItem("email")
+ 
+             }; 
+                           xhr.send(data);
+                         }         
+                    </script>

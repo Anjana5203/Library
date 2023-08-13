@@ -101,43 +101,7 @@
             }
         }
 
-        .admin-profile {
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content: center;
-  padding: 20px;
-  background-color: #dac7c7;
-  border-radius: 10px;
-  text-align: justify;
-  margin: 0 auto;
-  max-width: 400px;
-  box-shadow: 0 2px 6px rgba(111, 109, 109, 0.1);
-}
-
-.profile-picture img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.profile-details {
-  margin-top: 20px;
-}
-
-.profile-details h3 {
-  font-size: 26px;
-  margin-bottom: 5px;
-}
-
-.profile-details p {
-  font-size: 18px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  color: black;
-}
-
+      
 
 
 .search-form {
@@ -219,15 +183,15 @@
     </section>
       <br><br><br>
       <div class="search-form">
-        <input type="text" placeholder="BookName" name ="name" id="BookName">
-        <input type="text" placeholder="Author" name ="Author" id="Author">
+        <input type="text" placeholder="Book Name" id="BookName">
+        <input type="text" placeholder="Author Name" id="Author">
 
     </div>
     <center>
     <div class="view-options">
         <div class="btn-group">
-            <button class="btn btn-primary" id="search" onclick="forsearch()">Search </button>
-            <button class="btn btn-primary" onclick="Booklist()"> View</button>
+          <button class="btn btn-primary" id="search-button" onclick="searchTable()">Search</button>
+          <button class="btn btn-primary" onclick="Booklist()"> View</button>
         </div>
     </div>
     </div>
@@ -235,46 +199,62 @@
   
 <center>
   <br>
-<div id="Booklist"></div>
+  <table id="Booklist">
 
-<script>
-  async function forsearch(){
-			const data = {
-				BookName: document.getElementById("BookName").value,
-				Author: document.getElementById("Author").value,
-			}	
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
-      xhr.addEventListener("readystatechange", function() {
-        if (this.readyState === this.DONE) {
-          console.log(this.responseText);
-          var res = JSON.parse(this.responseText);
-          var table = '<table class="Booklist">  <tr><th>Book ISBN</th><th>Book ID</th><th> Book Name</th><th>Author</th><th>Publish Year</th></tr>';
-          var element = "";
-          if (res.data.length > 0) {
-            for (var index = 0; index < res.data.length; index++) {
-              element += '<tr><td>' + res.data[index].BookISBN + '</td><td>' + res.data[index].BookID 
-                + '</td><td>' + res.data[index].BookName + '</td><td>' + res.data[index].Author 
-                  + '</td><td>' + res.data[index].PublishYear + '</td></tr>';
-            }
-          }
-          table += element;
-          table += '</table>'
-          document.getElementById("Booklist").innerHTML = table;
+  </table>
+  <script>
+   function searchTable() {
+  var bookNameInput = document.getElementById("BookName").value.toUpperCase();
+  var authorInput = document.getElementById("Author").value.toUpperCase();
+  var data = {
+    BookName: bookNameInput,
+    Author: authorInput
+  };
+  
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+  xhr.addEventListener("readystatechange", function() {
+    if (this.readyState === this.DONE) {
+      console.log(this.responseText);
+      var res = JSON.parse(this.responseText);
+      var table = '<table class="Booklist">  <tr><th>Book ISBN</th><th>Book ID</th><th>Book Name</th><th>Author</th><th>Publish Year</th><th>Image</th><th>Description</th><th>Borrow</th></tr>';
+      var element = "";
+      if (res.data.length > 0) {
+        for (var index = 0; index < res.data.length; index++) {
+          element += '<tr><td>' + res.data[index].BookISBN + '</td><td>' + res.data[index].BookID 
+            + '</td><td>' + res.data[index].BookName + '</td><td>' + res.data[index].Author 
+            + '</td><td>' + res.data[index].PublishYear+
+              `</td><td><img src=${res.data[index].image} style="width: 100px; height: 100px;"></td><td class="description-cell">` + res.data[index].Description 
+            + '</td><td><button class="submit-button" onclick="BorrowBook(' + res.data[index].BookID + ')">Borrow</button></td></tr>';
         }
-      });
+      } else {
+        element += '<tr><td colspan="6">No results found</td></tr>';
+      }
+      
+      table += element;
+      table += '</table>';
+      document.getElementById("Booklist").innerHTML = table;
+    }
+  });
 
-    xhr.open("POST", "http://localhost:4000/search");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(data));
-  }
-</script>
+  xhr.open("POST", "http://localhost:4000/search");
+  xhr.setRequestHeader("Accept", "*/*");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.send(JSON.stringify(data));
+}
+
+
+  </script>
+
 </center>
+<style>
+  .description-cell {
+   width:550px;
+   font-size:x-small;
+  }
+</style>
       <center>
-    
-              
-                <table id="Booklist"><br>
-                </table>
+       
                 <script>
                   function Booklist() {
                     event.preventDefault()
@@ -285,17 +265,19 @@
                       if (this.readyState === this.DONE) {
                         console.log(this.responseText);
                         const res = JSON.parse(this.responseText);
-                        var table = '<table class="Booklist">  <tr><th>Book ISBN</th><th>Book ID</th><th>Book Name</th><th>Author</th><th>Publish Year</th></tr>', element = "";
+                        var table = '<table class="Booklist">  <tr><th>Book ISBN</th><th>Book ID</th><th>Book Name</th><th>Author</th><th>Publish Year</th><th>Image</th><th>Description</th><th>Borrow</th></tr>', element = "";
                         if (res.data.length > 0) {
                           for (let index = 0; index < res.data.length; index++) {
                             element += '<tr><td>'  + res.data[index].BookISBN + '</td><td>' + res.data[index].BookID + '</td><td>' 
-                                + res.data[index].BookName + '</td><td>' + res.data[index].Author + '</td><td>' + res.data[index].PublishYear 
-                                  + '</td></tr>';
+                                + res.data[index].BookName + '</td><td>' + res.data[index].Author + '</td><td>' + res.data[index].PublishYear +
+                                  `</td><td><img src=${res.data[index].image} style="width: 100px; height: 100px;"></td><td class="description-cell">` + res.data[index].Description
+                                  + '</td><td><button class="submit-button" onclick="BorrowBook (' + res.data[index].BookID + ')">Borrow</button></td></tr>';
                           }
                         }
                         table += element;
                         table += '</table>'
                         document.getElementById("Booklist").innerHTML = table;
+                        
                       }
                     });
                     xhr.open("GET", "http://localhost:4000/viewbook");
@@ -304,12 +286,55 @@
                     xhr.send(data);
                   }
                 </script>
+
+<script>
+   function BorrowBook(BookID) {
+      const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          console.log(this.responseText);
+          if (confirm("Are you sure you want to Borrow this Book?")) {
+          console.log(BookID,BookName,email);
+          let data = {};
+          data.BookID = document.getElementById("BookID").value;
+          data.BookName = document.getElementById("").value;
+          data.email = document.getElementById("email").value;
+            const payload = {
+                BookID: BookID,
+               BookName:BookName,
+                email: localStorage.getItem("email")
+
+            }; 
+
+        }
+      }
+    });
+      xhr.open("POST", "http://localhost:4000/borrowreq");
+      xhr.setRequestHeader("Accept", "*/*");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(JSON.stringify({ BookID: BookID,
+                        email:localStorage.getItem("email")
+                      
+                      }));
+
+      xhr.send(data);
+    }
+    
+                  
+                </script>
+
+<table id="Booklist">
+
+</table>
+
                 </center>
                
                 
     <br><br><br><Br><Br>
 
       <br><br><br>
-
+      
     </body>
     </html>

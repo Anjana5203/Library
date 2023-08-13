@@ -161,7 +161,7 @@ function showSuccessMessage() {
   
 
 
-  function Register() {
+  async function Register() {
   event.preventDefault();
 
   if (!validateForm()) {
@@ -174,7 +174,11 @@ function showSuccessMessage() {
   data.BookName = document.getElementById("BookName").value;
   data.Author = document.getElementById("Author").value;
   data.PublishYear = document.getElementById("PublishYear").value;
+  data.Description = document.getElementById("Description").value;
 
+  data.image = await fileToBase64(document.getElementById("image"));
+ 
+  console.log(data)
   data = JSON.stringify(data);
 
   const xhr = new XMLHttpRequest();
@@ -190,9 +194,7 @@ function showSuccessMessage() {
   xhr.open("POST", "http://localhost:4000/bookup");
 
   xhr.setRequestHeader("Accept", "*/*");
-  xhr.setRequestHeader("User-Agent", "Thunder Client (https://www.thunderclient.com)");
   xhr.setRequestHeader("Content-Type", "application/json");
-
   xhr.send(data);
 }
 
@@ -205,7 +207,11 @@ function showSuccessMessage() {
       var BookName = document.forms["registrationForm"]["BookName"].value;
       var Author = document.forms["registrationForm"]["Author"].value;
       var PublishYear = document.forms["registrationForm"]["PublishYear"].value;
-      
+      var Description = document.forms["registrationForm"]["Description"].value;
+
+
+
+
       var errorBox = document.getElementById("errorBox");
       errorBox.innerHTML = ""; // Clear previous error messages
       
@@ -240,25 +246,58 @@ function showSuccessMessage() {
         showError("PublishYear", "Publish Year should be a 4-digit number.");
         isValid = false;
       }
+//Description Validation
+      if (Description.trim() === "") {
+        showError("Description", "Description is required.");
+        isValid = false;
+      }
+      
+    
       
       return isValid;
     }
     
     function showError(fieldId, errorMessage) {
-      var fieldContainer = document.getElementById(fieldId + "-container");
-      fieldContainer.classList.add("error");
+     var fieldContainer = document.getElementById(fieldId + "-container");
+     fieldContainer.classList.add("error");
       
-      var errorContainer = document.getElementById(fieldId + "-error");
+     var errorContainer = document.getElementById(fieldId + "-error");
       errorContainer.textContent = errorMessage;
-    }
+     }
 
     function removeError(fieldId) {
-  var fieldContainer = document.getElementById(fieldId + "-container");
-  fieldContainer.classList.remove("error");
+   var fieldContainer = document.getElementById(fieldId + "-container");
+   fieldContainer.classList.remove("error");
   
-  var errorContainer = document.getElementById(fieldId + "-error");
-  errorContainer.textContent = "";
+   var errorContainer = document.getElementById(fieldId + "-error");
+   errorContainer.textContent = "";
 }
+
+
+
+function fileToBase64(fileInput) {
+    return new Promise((resolve, reject) => {
+      const file = fileInput.files[0];
+  
+      if (!file) {
+        reject(new Error("No file selected."));
+        return;
+      }
+  
+      const reader = new FileReader();
+  
+      reader.onload = function (e) {
+        const base64String = e.target.result;
+        resolve(base64String);
+      };
+  
+      reader.onerror = function (error) {
+        reject(error);
+      };
+  
+      reader.readAsDataURL(file);
+    });
+  }
   </script>
 
 
@@ -344,8 +383,28 @@ function showSuccessMessage() {
           
           <div class="form-group" id="PublishYear-container">
             <label for="PublishYear">Published Year:</label>
+           <!--<select id="PublishYear" name="PublishYear">
+                <option value="">Select Year</option>
+
+                <option value="1900">1901</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+
+            </select>-->
             <input type="text" id="PublishYear" name="PublishYear">
             <div id="PublishYear-error" class="error-message"></div>
+        </div>
+        
+
+          <div class="form-group" id="Description-container">
+            <label for="Description">Description :</label>
+            <input type="text" id="Description" name="Description">
+            <div id="Description-error" class="error-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Book Image:</label><br>
+            <input type="file" id="image" name="image">
           </div>
       
       <input type="submit" value="Register" onclick="Register()" class="submit-button">
